@@ -20,6 +20,7 @@
           :gender="itemsForList.gender"
         >
         </CardCharacter>
+        <h1>{{allCharacter}}</h1>
       </div>
     </div>
   </div>
@@ -32,12 +33,14 @@ export default {
   name: "GridCard",
   props: {
     characters: [],
+    allCharacter: null
   },
   data: function () {
     return {
       currentPage: 1,
       perPage: 10,
-      rows: this.characters.length,
+      rows: this.allCharacter,
+
     };
   },
   computed: {
@@ -47,10 +50,17 @@ export default {
         this.currentPage * this.perPage
       );
     },
+
   },
 
   components: {
     CardCharacter,
   },
+
+/*   methods:{
+    sendInformation:function(){
+      this.$emit("new", {this.characters })
+    }
+  } */
 };
 </script>

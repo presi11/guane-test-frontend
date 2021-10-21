@@ -1,14 +1,23 @@
 <template>
   <div>
-    <h1>This is an all information by character</h1>
+    <AllInformation> </AllInformation>
   </div>
 </template>
 
 <script>
-
+import AllInformation from "@/components/AllInformation.vue";
 
 export default {
-  name: 'Information',
-}
-
+  name: "Information",
+  components: {
+    AllInformation,
+  },
+  props: {
+    name: null,
+    image: null,
+    species: null,
+    gender: null,
+  },
+  
+};
 </script>

@@ -1,18 +1,40 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <GridCard :characters="characters" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import GridCard from "@/components/GridCard.vue";
+import axios from "axios";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
-  }
-}
+    GridCard,
+  },
+
+  data: function () {
+    return { characters: [],
+     };
+  },
+  async created() {
+    axios.get("https://rickandmortyapi.com/api/character").then((result) => {
+      this.characters = result.data.results;
+      console.log(result.data);
+      console.log(this.characters);
+    });
+  },
+  /*   methods: {
+    async allCharacters() {
+      await axios
+        .get("https://rickandmortyapi.com/api/character")
+        .then((result) => {
+          this.characters = result.data.results;
+          console.log(result.data);
+        });
+    },
+  }, */
+};
 </script>

@@ -17,7 +17,7 @@
         <b-card-sub-title class="mb-2">Specie {{ species }} - Gender {{gender}}</b-card-sub-title>
         <router-link :to="{name:'Information', params:{id:idCharacter}}">
 
-        <b-button  variant="primary">More information</b-button>
+        <b-button  v-b-popover.hover.top="'I have more information about you favorite character!!!'"  variant="primary">More information</b-button>
         </router-link>
       </b-card>
 

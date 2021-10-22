@@ -1,11 +1,11 @@
 <template>
   <div class="home">
+   
     <GridCard :allCharacter="allCharacter" />
   </div>
 </template>
 
 <script>
-
 import GridCard from "@/components/GridCard.vue";
 
 export default {
@@ -20,6 +20,11 @@ export default {
       number: 5,
     };
   },
+
+methods:{
+
+},
+
   async created() {
     let countCharacter = await this.$store.dispatch("getCharacterCount");
     this.allCharacter = countCharacter;

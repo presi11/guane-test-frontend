@@ -10,13 +10,15 @@
         img-alt="Image"
         img-top
         tag="article"
-        style="max-width: 20rem"
-        class="mb-2"
+        style="max-width: 18rem"
+        class="mb-4"
       >
        
         <b-card-sub-title class="mb-2">Specie {{ species }} - Gender {{gender}}</b-card-sub-title>
+        <router-link :to="{name:'Information', params:{id:idCharacter}}">
 
-        <b-button href="/information" variant="primary">More information</b-button>
+        <b-button  variant="primary">More information</b-button>
+        </router-link>
       </b-card>
 
     </div>
@@ -33,6 +35,7 @@ export default {
       image: null,
       species: null,
       gender: null,
+      idCharacter:null
   },
 
 };

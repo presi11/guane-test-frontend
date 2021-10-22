@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-    <GridCard :characters="characters" />
+    <GridCard :allCharacter="allCharacter" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+
 import GridCard from "@/components/GridCard.vue";
-import axios from "axios";
 
 export default {
   name: "Home",
@@ -16,25 +15,14 @@ export default {
   },
 
   data: function () {
-    return { characters: [],
-     };
+    return {
+      allCharacter: null,
+      number: 5,
+    };
   },
   async created() {
-    axios.get("https://rickandmortyapi.com/api/character").then((result) => {
-      this.characters = result.data.results;
-      console.log(result.data);
-      console.log(this.characters);
-    });
+    let countCharacter = await this.$store.dispatch("getCharacterCount");
+    this.allCharacter = countCharacter;
   },
-  /*   methods: {
-    async allCharacters() {
-      await axios
-        .get("https://rickandmortyapi.com/api/character")
-        .then((result) => {
-          this.characters = result.data.results;
-          console.log(result.data);
-        });
-    },
-  }, */
 };
 </script>

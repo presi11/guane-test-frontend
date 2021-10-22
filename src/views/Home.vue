@@ -1,18 +1,28 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <GridCard :allCharacter="allCharacter" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import GridCard from "@/components/GridCard.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
-  }
-}
+    GridCard,
+  },
+
+  data: function () {
+    return {
+      allCharacter: null,
+      number: 5,
+    };
+  },
+  async created() {
+    let countCharacter = await this.$store.dispatch("getCharacterCount");
+    this.allCharacter = countCharacter;
+  },
+};
 </script>

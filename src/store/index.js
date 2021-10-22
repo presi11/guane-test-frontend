@@ -6,12 +6,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    character:null,
     characters: null,
     count: null,
   },
   mutations: {
-    setCharacter(state, characters) {
-      state.characters = characters;
+    setCharacter(state, character) {
+      state.character = character;
     },
     setCharacterPage(state, characters) {
       state.characters = characters;
@@ -22,18 +23,6 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async getCharacter({ commit }) {
-      let response = await axios.get(
-        "https://rickandmortyapi.com/api/character"
-      );
-
-      if (response.status == 200) {
-        commit("setCharacter", response.data.results);
-      }
-      return response.data.results;
-    },
-
-
     async getCharacterCount({ commit }) {
       let response = await axios.get(
         "https://rickandmortyapi.com/api/character"
@@ -55,6 +44,17 @@ export default new Vuex.Store({
       }
       return response.data.results;
     },
+    async getCharacter({ commit }, idCharacter) {
+      let response = await axios.get(
+        `https://rickandmortyapi.com/api/character/${idCharacter}`
+      );
+
+      if (response.status == 200) {
+        commit("setCharacter", response.data);
+      }
+      return response.data;
+    },
+
   },
   modules: {},
 });

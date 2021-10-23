@@ -9,7 +9,8 @@ export default new Vuex.Store({
     character: null,
     characters: null,
     count: null,
-    characterSearch:null
+    characterSearch:null,
+    characterSearchByStatus: null
   },
   mutations: {
     setCharacter(state, character) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     setCharacterSearch(state, characterSearch) {
       state.characterSearch = characterSearch;
+    },
+    setCharacterByStatus(state, characterSearchByStatus) {
+      state.characterSearchByStatus = characterSearchByStatus;
     },
   },
   actions: {
@@ -62,6 +66,16 @@ export default new Vuex.Store({
     async getCharacterSearch({ commit }, name) {
       let response = await axios.get(
        `https://rickandmortyapi.com/api/character?page=1&name=${name}`
+      );
+
+      if (response.status == 200) {
+        commit("setCharacter", response.data);
+      }
+      return response.data;
+    },
+    async getCharacterByStatus({ commit }, status) {
+      let response = await axios.get(
+       `https://rickandmortyapi.com/api/character?status=${status}`
       );
 
       if (response.status == 200) {

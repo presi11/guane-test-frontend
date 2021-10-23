@@ -1,35 +1,50 @@
 <template>
   <div class="container">
-    <div class="field has-addons is-pulled-right">
-      <div class="control">
-        <input
-          v-model="search"
-          type="text"
-          class="input is-rounded"
-          v-on:keyup.enter="searchData"
-        />
-      </div>
-      <div class="control">
-        <button class="button is-success is-rounded" v-on:click="searchData">
-          Buscar
-        </button>
-      </div>
-    </div>
-    <b-row>
-      <b-col md="6" class="my-1">
-        <b-pagination
-          :total-rows="rows"
-          :per-page="perPage"
-          v-model="currentPage"
-          class="my-0"
-          align="center"
-          v-on:input="hi"
-        />
-      </b-col>
-    </b-row>
+    <FilterByStatus @state="filterStatus" />
+    <b-container class="bv-example-row">
+      <b-row>
+        <b-col>
+          <b-pagination
+            :total-rows="rows"
+            :per-page="perPage"
+            v-model="currentPage"
+            class="my-0"
+            align="center"
+            v-on:input="hi"
+          />
+          ></b-col
+        >
+        <b-col
+          ><div class="input-group mb-5">
+            <div class="col-xs-3">
+              <input
+                v-model="search"
+                v-on:keyup.enter="searchData"
+                type="search"
+                class="form-control"
+                placeholder="Name"
+                aria-label="Recipient's username"
+                aria-describedby="basic-addon2"
+              />
+            </div>
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-success"
+                type="button"
+                v-on:click="searchData"
+              >
+                Search
+              </button>
+            </div>
+          </div></b-col
+        >
+      </b-row>
+
+      <b-row> </b-row>
+    </b-container>
     <div class="row" id="itemCard">
       <div
-        class="col-sm-3"
+        class="col-sm-6"
         v-for="(itemsForList, index) in itemsForList"
         :key="index"
       >
@@ -48,7 +63,7 @@
 
 <script>
 import CardCharacter from "@/components/CardCharacter";
-
+import FilterByStatus from "@/components/FilterByStatus.vue";
 export default {
   name: "GridCard",
   props: {
@@ -117,15 +132,31 @@ export default {
       this.fetch();
       if (this.search == "") {
         this.rows = this.allCharacter;
-      }else{
+      } else {
         console.log(this.characters.length);
-        this.rows = this.characters.length
+        this.rows = this.characters.length;
       }
+    },
+
+    async filterStatus(state) {
+      console.log(state.state);
+      let characterByStatus = await this.$store.dispatch(
+        "getCharacterByStatus",
+        state.state
+      );
+      console.log(characterByStatus);
+      this.characters = characterByStatus.results;
     },
   },
   components: {
     CardCharacter,
+    FilterByStatus,
   },
 };
 </script>
 
+<style >
+input {
+  width: 10%;
+}
+</style>

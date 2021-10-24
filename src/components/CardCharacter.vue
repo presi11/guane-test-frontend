@@ -20,6 +20,7 @@
           </b-col>
         </b-row>
       </b-card> -->
+     <router-link :to="{ name: 'Information', params: { id: idCharacter } }">
       <b-card
         bg-variant="dark"
         text-variant="white"
@@ -45,6 +46,7 @@
           >
         </router-link>
       </b-card>
+      </router-link>
     </div>
   </div>
 </template>

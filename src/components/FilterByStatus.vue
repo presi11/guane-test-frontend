@@ -1,5 +1,7 @@
 <template>
+
   <div class="filter">
+    
     <div class="item" @click="filter('')">
       All
     </div>
@@ -31,7 +33,7 @@ export default {
 <style lang="scss">
 .filter {
   width: 400px;
-  margin: 0 auto;
+  margin: 4px ;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-radius: 10px;

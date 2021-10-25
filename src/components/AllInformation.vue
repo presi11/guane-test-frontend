@@ -3,19 +3,39 @@
     <h1>Information about {{ name }}</h1>
 
     <div class="all-information__card">
-      <img class="all-information__image" :src="image" alt="character image">
+      <img class="all-information__image" :src="image" alt="character image" />
       <div class="all-information__information">
-        <h2>{{name}}</h2>
-        <h2>{{status}}</h2>
-        <h2>{{species}}</h2>
-        <h2>{{gender}}</h2>
+        <h2 class="all-information__feature">Name</h2>
+        <h3>{{ name }}</h3>
+        <h2 class="all-information__feature">Status</h2>
+        <div v-if="status == 'Alive'">
+          <h3>❤️ {{ status }}</h3>
+        </div>
+        <div v-if="status == 'Dead'">
+          <h3>☠️ {{ status }}</h3>
+        </div>
+        <div v-if="status == 'unknown'">
+          <h3>❓ {{ status }}</h3>
+        </div>
+        <h2 class="all-information__feature">Specie</h2>
+        <div v-if="species == 'Human'">
+          <h3>🧔🏻 {{ species }}</h3>
+        </div>
+        <div v-else>
+          <h3>👽 {{ species }}</h3>
+        </div>
+        <h2 class="all-information__feature">Gender</h2>
+
+        <h3>⚧️{{ gender }}</h3>
       </div>
       <div class="all-information__origen">
-        <h2>{{origin}}</h2>
-  
+        <h2 class="all-information__feature">Origin</h2>
+        <h2>🪐{{ origin }}</h2>
       </div>
-      <div class="all-information__location"><h2>{{location}}</h2></div>
-            
+      <div class="all-information__location">
+        <h2 class="all-information__feature">Location</h2>
+        <h2>🗺️{{ location }}</h2>
+      </div>
     </div>
   </div>
 </template>
@@ -65,14 +85,20 @@ export default {
     grid-template-rows: auto auto;
     background-color: rgb(33, 37, 41);
     width: 57rem;
-    height: 24rem;
+    height: 29rem;
+    border-radius: 10px;
   }
-  &__image{
-    
+
+  &__image {
+    border-radius: 10px;
+    margin: 2rem;
   }
-  &__information{
+  &__information {
     text-align: left;
-    
+  }
+
+  &__feature {
+    font-weight: bold;
   }
 }
 </style>

@@ -1,63 +1,47 @@
 <template>
   <div class="container">
+    <div class="grid-top">
     <FilterByStatus @state="filterStatus" />
-    <b-container class="bv-example-row">
-      <b-row>
-        <b-col>
-          <b-pagination
-            :total-rows="rows"
-            :per-page="perPage"
-            v-model="currentPage"
-            class="my-0"
-            align="center"
-            v-on:input="hi"
-          />
-          ></b-col
-        >
-        <b-col
-          ><div class="input-group mb-5">
-            <div class="col-xs-3">
-              <input
-                v-model="search"
-                v-on:keyup.enter="searchData"
-                type="search"
-                class="form-control"
-                placeholder="Name"
-                aria-label="Recipient's username"
-                aria-describedby="basic-addon2"
-              />
-            </div>
-            <div class="input-group-append">
-              <button
-                class="btn btn-outline-success"
-                type="button"
-                v-on:click="searchData"
-              >
-                Search
-              </button>
-            </div>
-          </div></b-col
-        >
-      </b-row>
 
-      <b-row> </b-row>
-    </b-container>
-    <div class="row" id="itemCard">
-      <div
-        class="col-sm-6"
-        v-for="(itemsForList, index) in itemsForList"
-        :key="index"
-      >
+    <div class="search">
+      <input
+        v-model="search"
+        v-on:keyup.enter="searchData"
+        type="search"
+        class="form-control"
+        placeholder="Name"
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon2"
+      />
+
+      <button class="btn btn-success" type="button" v-on:click="searchData">
+        Search
+      </button>
+    </div>
+   </div>
+    <div class="grid-card" id="itemCard">
+      <div v-for="(itemsForList, index) in itemsForList" :key="index">
         <CardCharacter
           :name="itemsForList.name"
           :image="itemsForList.image"
           :species="itemsForList.species"
-          :gender="itemsForList.gender"
+          :status="itemsForList.status"
           :idCharacter="itemsForList.id"
         >
         </CardCharacter>
       </div>
     </div>
+    <div class="pagination">
+      <b-pagination
+        :total-rows="rows"
+        :per-page="perPage"
+        v-model="currentPage"
+        class="my-0"
+        align="center"
+        v-on:input="hi"
+      />
+    </div>
+ 
   </div>
 </template>
 
@@ -146,6 +130,7 @@ export default {
       );
       console.log(characterByStatus);
       this.characters = characterByStatus.results;
+      this.currentPage = 1;
     },
   },
   components: {
@@ -158,5 +143,29 @@ export default {
 <style >
 input {
   width: 10%;
+}
+
+.grid-card {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  grid-template-rows: auto;
+  justify-items: center;
+}
+.pagination {
+  margin: 2rem;
+  justify-content: center;
+}
+
+.grid-top{
+  display: grid;
+  grid-template-columns:auto auto ;
+  grid-template-rows: auto;
+}
+.search {
+  margin: 2rem;
+  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 80% 20% ;
 }
 </style>

@@ -50,7 +50,7 @@ methods:{
     background: #1b1b1b;
 }
 h1 {
-  color: #00ff97;
+  color: #f10606;
 }
 /*
 .content-characters{

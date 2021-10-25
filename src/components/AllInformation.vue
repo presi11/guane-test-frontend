@@ -1,17 +1,42 @@
 <template>
-  <div>
+  <div class="all-information">
     <h1>Information about {{ name }}</h1>
-    <b-container class="bv-example-row mb-3">
-      <b-row cols="1">
-        <b-col>{{name}}</b-col>
-      </b-row>
-      <b-row cols="2">
-        <b-col><img :src="image" alt=""></b-col>
-        <b-col>{{status}}</b-col>
-        <b-col>{{species}}</b-col>
-        <b-col>{{gender}}</b-col>
-      </b-row>
-    </b-container>
+
+    <div class="all-information__card">
+      <img class="all-information__image" :src="image" alt="character image" />
+      <div class="all-information__information">
+        <h2 class="all-information__feature">Name</h2>
+        <h3>{{ name }}</h3>
+        <h2 class="all-information__feature">Status</h2>
+        <div v-if="status == 'Alive'">
+          <h3>❤️ {{ status }}</h3>
+        </div>
+        <div v-if="status == 'Dead'">
+          <h3>☠️ {{ status }}</h3>
+        </div>
+        <div v-if="status == 'unknown'">
+          <h3>❓ {{ status }}</h3>
+        </div>
+        <h2 class="all-information__feature">Specie</h2>
+        <div v-if="species == 'Human'">
+          <h3>🧔🏻 {{ species }}</h3>
+        </div>
+        <div v-else>
+          <h3>👽 {{ species }}</h3>
+        </div>
+        <h2 class="all-information__feature">Gender</h2>
+
+        <h3>⚧️{{ gender }}</h3>
+      </div>
+      <div class="all-information__origen">
+        <h2 class="all-information__feature">Origin</h2>
+        <h2>🪐{{ origin }}</h2>
+      </div>
+      <div class="all-information__location">
+        <h2 class="all-information__feature">Location</h2>
+        <h2>🗺️{{ location }}</h2>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,13 +45,13 @@ export default {
   name: "AllInformation",
   data: function () {
     return {
-      name:null,
-       status: null,
-       species:null,
-       gender:null,
-       origin:null,
-       location:null,
-       image:null
+      name: null,
+      status: null,
+      species: null,
+      gender: null,
+      origin: null,
+      location: null,
+      image: null,
     };
   },
   async created() {
@@ -44,3 +69,36 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.all-information {
+  display: grid;
+  /*   grid-template-columns: auto ;
+  grid-template-rows: auto auto; */
+  align-content: center;
+  justify-content: center;
+
+  &__card {
+    color: white;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    background-color: rgb(33, 37, 41);
+    width: 57rem;
+    height: 29rem;
+    border-radius: 10px;
+  }
+
+  &__image {
+    border-radius: 10px;
+    margin: 2rem;
+  }
+  &__information {
+    text-align: left;
+  }
+
+  &__feature {
+    font-weight: bold;
+  }
+}
+</style>

@@ -73,8 +73,6 @@ export default {
 <style lang="scss" scoped>
 .all-information {
   display: grid;
-  /*   grid-template-columns: auto ;
-  grid-template-rows: auto auto; */
   align-content: center;
   justify-content: center;
 

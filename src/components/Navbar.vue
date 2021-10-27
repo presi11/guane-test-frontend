@@ -7,6 +7,7 @@
           Rick And Morty Api
         </b-navbar-brand>
       </b-navbar>
+
       <p></p>
     </div>
   </div>
@@ -14,11 +15,7 @@
 <script>
 export default {
   name: "Navbar",
-  data() {
-    return {
-      meal: "",
-    };
-  },
+
 };
 </script>
 <style >

@@ -1,8 +1,8 @@
 # guane-test-frontend
 
-## Deploy app
+## Deploy app https://guane.azurewebsites.net/
 
-El despliegue de la aplciación se encuntra en una imagen de docker, realiza desde una pipeline de Azure después de cada cambio en la rama deploy, la cual hace un trigger a Azure para buildear la imagen, testearla y montarla a la siguiente web app https://guane.azurewebsites.net/
+El despliegue de la aplicación se encuentra en una imagen de docker, que es montada a un registro de contenedores de Azure. Es realizada desde una pipeline de Azure devops, después de cada cambio en la rama deploy, la cual es la encargada de realizar el trigger a Azure para buildear la imagen, testearla y montarla al registro de contenedores para su posterior montaje a la siguiente web app https://guane.azurewebsites.net/
 
 ![image](https://user-images.githubusercontent.com/44074556/139188028-4eb5a13b-844e-427b-88c1-1eebc18f2d2c.png)
 

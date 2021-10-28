@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import character from "./modules/character";
+import character from "../store/Modules/character";
 
 
 Vue.use(Vuex);

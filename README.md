@@ -4,8 +4,15 @@
 
 El despliegue de la aplciación se encuntra en una imagen de docker, realiza desde una pipeline de Azure después de cada cambio en la rama deploy, la cual hace un trigger a Azure para buildear la imagen, testearla y montarla a la siguiente web app https://guane.azurewebsites.net/
 
-![image](https://user-images.githubusercontent.com/44074556/139187892-1211a5f1-5bc2-4e3a-b285-5c8cd9737b59.png)
+![image](https://user-images.githubusercontent.com/44074556/139188028-4eb5a13b-844e-427b-88c1-1eebc18f2d2c.png)
 
+## Usos del aplicativo
+
+Se pueden filtrar los personajes por su estado, el cual puede ser "Dead", "Alive", "Unknown" y el filtro "All" funciona para obtener todos los caracteres.
+
+Ademas de tener filtros podemos buiscar a nuestro persona por su nombre y se nos mostrará todas las coincidencias que existen según lo que escribamos.
+
+Por ultimo la paginación funciona para cada uno de los filtros, la busqueda por nombre y el manejo en general mostrabndo el total de resultados. Se mostraran 10 personajes por pagina y al dar click en cada una de las tarjetas se mostrará una vista con más información acerca del personaje.  
 
 ## Project setup
 ```

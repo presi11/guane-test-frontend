@@ -8,11 +8,11 @@ El despliegue de la aplicación se encuentra en una imagen de docker, que es mon
 
 ## Usos del aplicativo
 
-Se pueden filtrar los personajes por su estado, el cual puede ser "Dead", "Alive", "Unknown" y el filtro "All" funciona para obtener todos los caracteres.
+Se pueden filtrar los personajes por su estado, el cual puede ser "Dead", "Alive", "Unknown" y el filtro "All" que funciona para obtener todos los caracteres.
 
-Ademas de tener filtros podemos buiscar a nuestro persona por su nombre y se nos mostrará todas las coincidencias que existen según lo que escribamos.
+Ademas de tener filtros podemos buscar a nuestro persona por su nombre y se nos mostrará todas las coincidencias que existen según lo que escribamos.
 
-Por ultimo la paginación funciona para cada uno de los filtros, la busqueda por nombre y el manejo en general mostrabndo el total de resultados. Se mostraran 10 personajes por pagina y al dar click en cada una de las tarjetas se mostrará una vista con más información acerca del personaje.  
+Por ultimo la paginación funciona para cada uno de los filtros, la busqueda por nombre y el manejo en general mostrando el total de resultados. Se mostraran 10 personajes por pagina y al dar click en cada una de las tarjetas se mostrará una vista con más información acerca del personaje.  
 
 ## Project setup
 ```

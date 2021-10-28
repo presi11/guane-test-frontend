@@ -26,7 +26,7 @@
         </div>
         <h2 class="all-information__feature">Gender</h2>
 
-        <h3>⚧️{{ gender }}</h3>
+        <h3>⚧️ {{ gender }}</h3>
       </div>
       <div class="all-information__origen">
         <h2 class="all-information__feature">Origin</h2>

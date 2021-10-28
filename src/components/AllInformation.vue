@@ -73,8 +73,6 @@ export default {
 <style lang="scss" scoped>
 .all-information {
   display: grid;
-  /*   grid-template-columns: auto ;
-  grid-template-rows: auto auto; */
   align-content: center;
   justify-content: center;
 
@@ -84,14 +82,15 @@ export default {
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     background-color: rgb(33, 37, 41);
-    width: 57rem;
-    height: 29rem;
+    width: 59rem;
+    height: 31rem;
     border-radius: 10px;
   }
 
   &__image {
     border-radius: 10px;
-    margin: 2rem;
+    margin: 1rem;
+
   }
   &__information {
     text-align: left;

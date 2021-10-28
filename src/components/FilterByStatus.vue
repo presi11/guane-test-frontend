@@ -25,7 +25,7 @@ export default {
   width: 400px;
   height: 50px;
   margin: 4px;
-  margin-top: 1.5rem;
+
   display: grid;
   grid-template-columns: repeat(4, 2fr);
   border-radius: 10px;

@@ -1,8 +1,6 @@
 
 import axios from "axios";
 
-
-
 const character = {
   state: {
     character: null,

@@ -1,7 +1,9 @@
 
 import axios from "axios";
+const url = process.env.VUE_APP_API_RICK;
 
 const character = {
+
   state: {
     character: null,
     characters: null,
@@ -27,7 +29,7 @@ const character = {
         name: payLoad.name,
       };
       let response = await axios.get(
-        `https://rickandmortyapi.com/api/character`,
+        url,
         { params }
       );
 
@@ -43,7 +45,7 @@ const character = {
     },
     async getCharacter({ commit }, idCharacter) {
       let response = await axios.get(
-        `https://rickandmortyapi.com/api/character/${idCharacter}`
+        `${url}${idCharacter}`
       );
 
       if (response.status == 200) {

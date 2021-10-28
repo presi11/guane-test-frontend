@@ -33,7 +33,7 @@
         :per-page="perPage"
         class="my-0"
         align="center"
-        @change="changePage"
+        @change="getCharacterForPage"
         style="color: #ffffff"
       />
     </div>
@@ -59,11 +59,11 @@ export default {
   },
 
   async created() {
-    this.changePage(1);
+    this.getCharacterForPage(1);
   },
 
   methods: {
-    async changePage(currentPagePagination) {
+    async getCharacterForPage(currentPagePagination) {
       let params = {
         currentPagePagination: currentPagePagination,
         currentStatus: this.currentStatus,
@@ -77,12 +77,12 @@ export default {
 
     searchData() {
       this.currentPage = 1;
-      this.changePage(1);
+      this.getCharacterForPage(1);
     },
 
     async filterStatus(state) {
       this.currentStatus = state.state;
-      await this.changePage(1);
+      await this.getCharacterForPage(1);
       this.currentPage = 1;
     },
   },

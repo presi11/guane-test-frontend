@@ -8,7 +8,7 @@
         v-model="search"
           type="text"
           class="input-search"
-          placeholder="Type to Name..."
+          placeholder="Search a Character..."
            v-on:keyup.enter="searchData"
         />
       </div>

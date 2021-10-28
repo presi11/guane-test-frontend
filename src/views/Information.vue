@@ -12,12 +12,5 @@ export default {
   components: {
     AllInformation,
   },
-  props: {
-    name: null,
-    image: null,
-    species: null,
-    gender: null,
-  },
-  
 };
 </script>

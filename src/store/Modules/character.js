@@ -1,35 +1,60 @@
-import Vue from "vue";
-import Vuex from "vuex";
+
 import axios from "axios";
 
-Vue.use(Vuex);
 
-export default new Vuex.Store({
+
+const character = {
   state: {
+    character: null,
     characters: null,
     count: null,
   },
   mutations: {
-    setCharacter(state, characters) {
+    setCharacter(state, character) {
+      state.character = character;
+    },
+    setCharacterPage(state, characters) {
       state.characters = characters;
     },
-/*     countCharacter(state, count) {
+    countCharacter(state, count) {
       state.count = count;
-    }, */
+    },
   },
   actions: {
-    async getCharacter({ commit }) {
-        console.log('hiiiiiiiiiiii');
+    async getCharacterPage({ commit }, payLoad) {
+      let page = Math.floor((payLoad.currentPagePagination + 1) / 2);
+      let params = {
+        page: page,
+        status: payLoad.currentStatus,
+        name: payLoad.name,
+      };
       let response = await axios.get(
-        "https://rickandmortyapi.com/api/character"
+        `https://rickandmortyapi.com/api/character`,
+        { params }
       );
 
-     
       if (response.status == 200) {
-        commit("setCharacter", response.data.results);
-        commit("countCharacter", response.data.info.count);
+        if (payLoad.currentPagePagination % 2 == 1) {
+          commit("setCharacterPage", response.data.results.slice(0, 10));
+          commit("countCharacter", response.data.info.count);
+        } else {
+          commit("setCharacterPage", response.data.results.slice(10, 20));
+          commit("countCharacter", response.data.info.count);
+        }
       }
+    },
+    async getCharacter({ commit }, idCharacter) {
+      let response = await axios.get(
+        `https://rickandmortyapi.com/api/character/${idCharacter}`
+      );
+
+      if (response.status == 200) {
+        commit("setCharacter", response.data);
+      }
+      return response.data;
     },
   },
   modules: {},
-});
+};
+
+export default character;

@@ -1,32 +1,27 @@
 <template>
   <div class="container">
     <div class="grid-top">
-    <FilterByStatus @state="filterStatus" />
-
-    <div class="search">
-      <input
+      <FilterByStatus @state="filterStatus" />
+      <div class="search-box">
+        <button class="btn-search" v-on:click="searchData"><i class="fa fa-search"></i></button>
+        <input
         v-model="search"
-        v-on:keyup.enter="searchData"
-        type="search"
-        class="form-control"
-        placeholder="Name"
-        aria-label="Recipient's username"
-        aria-describedby="basic-addon2"
-      />
+          type="text"
+          class="input-search"
+          placeholder="Type to Name..."
+           v-on:keyup.enter="searchData"
+        />
+      </div>
 
-      <button class="btn btn-success" type="button" v-on:click="searchData">
-        Search
-      </button>
     </div>
-   </div>
     <div class="grid-card" id="itemCard">
-      <div v-for="(itemsForList, index) in itemsForList" :key="index">
+      <div v-for="(characters, index) in characters" :key="index">
         <CardCharacter
-          :name="itemsForList.name"
-          :image="itemsForList.image"
-          :species="itemsForList.species"
-          :status="itemsForList.status"
-          :idCharacter="itemsForList.id"
+          :name="characters.name"
+          :image="characters.image"
+          :species="characters.species"
+          :status="characters.status"
+          :idCharacter="characters.id"
         >
         </CardCharacter>
       </div>
@@ -34,102 +29,60 @@
     <div class="pagination">
       <b-pagination
         :total-rows="rows"
-        :per-page="perPage"
         v-model="currentPage"
+        :per-page="perPage"
         class="my-0"
         align="center"
-        v-on:input="hi"
+        @change="changePage"
+        style="color: #ffffff"
       />
     </div>
- 
   </div>
 </template>
 
 <script>
 import CardCharacter from "@/components/CardCharacter";
 import FilterByStatus from "@/components/FilterByStatus.vue";
+
 export default {
   name: "GridCard",
-  props: {
-    allCharacter: null,
-  },
+
   data: function () {
     return {
       characters: [],
-      paginatedItems: this.characters,
       currentPage: 1,
-      perPage: 10,
-      num: null,
       search: "",
+      perPage: 10,
       rows: null,
+      currentStatus: null,
     };
   },
 
   async created() {
-    let infoCharacterpage = await this.$store.dispatch("getCharacterPage", 1);
-    this.rows = this.allCharacter;
-    this.characters = infoCharacterpage;
-  },
-  computed: {
-    itemsForList: function () {
-      return this.characters.slice(
-        (this.currentPage - 1) * this.perPage,
-        this.currentPage * this.perPage
-      );
-    },
-  },
-
-  watch: {
-    async currentPage(newValue) {
-      if (newValue % 2 == 1) {
-        this.num = (newValue + 1) / 2;
-
-        let infoCharacterpage = await this.$store.dispatch(
-          "getCharacterPage",
-          this.num
-        );
-
-        this.characters = this.characters.concat(infoCharacterpage);
-      }
-    },
+    this.changePage(1);
   },
 
   methods: {
-    hi() {
-      console.log("hi");
-    },
-    async fetch() {
-      const params = {
-        page: this.currentPage,
+    async changePage(currentPagePagination) {
+      let params = {
+        currentPagePagination: currentPagePagination,
+        currentStatus: this.currentStatus,
         name: this.search,
       };
-
-      let characterSearch = await this.$store.dispatch(
-        "getCharacterSearch",
-        params.name
-      );
-      console.log(characterSearch);
-      this.characters = characterSearch.results;
+      await this.$store.dispatch("getCharacterPage", params);
+      console.log(this.$store.state);
+      this.characters = this.$store.state.character.characters;
+      this.rows = this.$store.state.character.count;
     },
+
     searchData() {
       this.currentPage = 1;
-      this.fetch();
-      if (this.search == "") {
-        this.rows = this.allCharacter;
-      } else {
-        console.log(this.characters.length);
-        this.rows = this.characters.length;
-      }
+      this.changePage(1);
     },
 
     async filterStatus(state) {
-      console.log(state.state);
-      let characterByStatus = await this.$store.dispatch(
-        "getCharacterByStatus",
-        state.state
-      );
-      console.log(characterByStatus);
-      this.characters = characterByStatus.results;
+      this.currentStatus = state.state;
+      await this.changePage(1);
       this.currentPage = 1;
     },
   },
@@ -140,7 +93,7 @@ export default {
 };
 </script>
 
-<style >
+<style lang="scss">
 input {
   width: 10%;
 }
@@ -156,16 +109,73 @@ input {
   margin: 2rem;
   justify-content: center;
 }
-
-.grid-top{
-  display: grid;
-  grid-template-columns:auto auto ;
-  grid-template-rows: auto;
+.page-item.active .page-link {  
+    background-color: #ff9800 !important;  
+    border-color: #ff9800 !important;  
+  
 }
-.search {
-  margin: 2rem;
-  align-items: flex-end;
+
+
+
+.grid-top {
   display: grid;
-  grid-template-columns: 80% 20% ;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  justify-items:center;
+}
+
+.search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.input-search{
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all .5s ease-in-out;
+  background-color: #ff9800;
+  padding-right: 40px;
+  color:#fff;
+}
+.input-search::placeholder{
+  color:rgba(255,255,255,.5);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search{
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color:#ffffff ;
+  background-color:transparent;
+  pointer-events: painted;  
+}
+.btn-search:focus ~ .input-search{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+.input-search:focus{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 }
 </style>

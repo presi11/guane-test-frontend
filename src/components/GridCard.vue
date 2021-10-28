@@ -70,7 +70,7 @@ export default {
         name: this.search,
       };
       await this.$store.dispatch("getCharacterPage", params);
-      console.log(this.$store.state);
+ 
       this.characters = this.$store.state.character.characters;
       this.rows = this.$store.state.character.count;
     },

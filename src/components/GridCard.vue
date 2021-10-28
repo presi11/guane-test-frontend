@@ -8,7 +8,7 @@
         v-model="search"
           type="text"
           class="input-search"
-          placeholder="Type to Name..."
+          placeholder="Search a Character..."
            v-on:keyup.enter="searchData"
         />
       </div>
@@ -33,7 +33,7 @@
         :per-page="perPage"
         class="my-0"
         align="center"
-        @change="changePage"
+        @change="getCharacterForPage"
         style="color: #ffffff"
       />
     </div>
@@ -59,30 +59,30 @@ export default {
   },
 
   async created() {
-    this.changePage(1);
+    this.getCharacterForPage(1);
   },
 
   methods: {
-    async changePage(currentPagePagination) {
+    async getCharacterForPage(currentPagePagination) {
       let params = {
         currentPagePagination: currentPagePagination,
         currentStatus: this.currentStatus,
         name: this.search,
       };
       await this.$store.dispatch("getCharacterPage", params);
-      console.log(this.$store.state);
+ 
       this.characters = this.$store.state.character.characters;
       this.rows = this.$store.state.character.count;
     },
 
     searchData() {
       this.currentPage = 1;
-      this.changePage(1);
+      this.getCharacterForPage(1);
     },
 
     async filterStatus(state) {
       this.currentStatus = state.state;
-      await this.changePage(1);
+      await this.getCharacterForPage(1);
       this.currentPage = 1;
     },
   },

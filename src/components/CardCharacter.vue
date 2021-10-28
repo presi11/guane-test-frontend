@@ -14,8 +14,9 @@
           :img-src="image"
           img-alt="Image"
           img-left
-          style=" max-width: 540px; max-height: 300px"
+          style=" max-width: 540px; max-height: 300px; img-border-radius: 2rem "
           class="mb-4"
+          img-border-radius="2px"
   
         >
           <div class="info-character">

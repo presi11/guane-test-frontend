@@ -9,12 +9,14 @@
           bg-variant="dark"
           text-variant="white"
           :title="name"
+          img-height="300"
+          img-width="300"
           :img-src="image"
           img-alt="Image"
           img-left
-          tag="article"
-          style="max-width: 540px"
+          style=" max-width: 540px; max-height: 300px"
           class="mb-4"
+  
         >
           <div class="info-character">
             <div v-if="status == 'Alive'">
@@ -65,7 +67,7 @@ export default {
   color: #00ff97;
 }
 
-.card-img-left{
+.card-img-left {
   background-size: 20px;
   color: #00ff97;
 }
@@ -83,11 +85,14 @@ export default {
   transition: transform 200ms ease-in-out;
   display: flex;
   text-align: left;
+  margin: 1rem;
+ 
 
   &:hover {
     transform: scale(1.05);
     h3 {
       color: var(--text-orange);
+  
     }
   }
 }

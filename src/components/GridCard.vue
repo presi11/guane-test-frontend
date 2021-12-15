@@ -122,6 +122,7 @@ input {
   grid-template-columns: auto auto;
   grid-template-rows: auto;
   justify-items:center;
+  align-items: center;
 }
 
 .search-box{

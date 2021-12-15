@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: front-app-pod
+  labels:
+    name: front-app-pod
+    app: demo-rick-app
+spec:
+  containers:
+    - name: front-app
+      image: rick:latest
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 80

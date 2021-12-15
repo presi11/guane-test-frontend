@@ -45,7 +45,7 @@ const character = {
     },
     async getCharacter({ commit }, idCharacter) {
       let response = await axios.get(
-        `${url}${idCharacter}`
+        `${url}/${idCharacter}`
       );
 
       if (response.status == 200) {

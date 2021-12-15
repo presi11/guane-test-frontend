@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: front-app-deploy
+  labels:
+    name: front-app-deploy
+    app: demo-rick-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: front-app-pod
+      app: demo-rick-app
+  template:
+    metadata:
+      name: front-app-pod
+      labels:
+        name: front-app-pod
+        app: demo-rick-app
+    spec:
+      containers:
+        - name: front-app
+          image: rick:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+
+       

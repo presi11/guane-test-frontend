@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: front-app
-      image: guane-test/rick
+      image: rick:latest
       imagePullPolicy: Never
       ports:
         - containerPort: 80

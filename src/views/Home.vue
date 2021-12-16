@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Prueba de pipeline numero 100</h1>
+    <h1>Prueba de pipeline numero 500</h1>
    <GridCard />
   </div> 
 </template>

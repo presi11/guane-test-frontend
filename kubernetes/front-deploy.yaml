@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: front-app
-          image: rick:latest
+          image: guanetest.azurecr.io/presi11/guane-test-frontend
           imagePullPolicy: Never
           ports:
             - containerPort: 80

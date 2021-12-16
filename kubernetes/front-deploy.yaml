@@ -21,7 +21,7 @@ spec:
       containers:
         - name: front-app
           image: guanetest.azurecr.io/presi11/guane-test-front
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
       imagePullSecrets:

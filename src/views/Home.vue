@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h1>Prueba de pipeline</h1>
    <GridCard />
   </div> 
 </template>

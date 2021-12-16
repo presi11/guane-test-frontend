@@ -4,7 +4,7 @@
     <div class="item" @click="filter('')">All</div>
     <div class="item" @click="filter('Alive')">Alive</div>
     <div class="item" @click="filter('Dead')">Dead</div>
-    <div class="item" @click="filter('unknown')">Unknown</div>
+    <div class="item" @click="filter('unknown')">No se que es esto</div>
   </div>
 </template>
 

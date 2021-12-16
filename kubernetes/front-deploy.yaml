@@ -21,8 +21,9 @@ spec:
       containers:
         - name: front-app
           image: guanetest.azurecr.io/presi11/guane-test-frontend
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
-
+      imagePullSecrets:
+        - name: rick-secret
        

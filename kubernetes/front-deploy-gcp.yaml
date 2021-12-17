@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: "github-presi11-guane-test-frontend-1"
-        image: "gcr.io/kubernetes-334518/github.com/presi11/guane-test-frontend:$COMMIT_SHA"
+        image: "gcr.io/kubernetes-334518/github.com/presi11/guane-test-frontend"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"

@@ -1,0 +1,45 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "front-app-deploy"
+  namespace: "default"
+  labels:
+    name: front-app-deploy
+    app: demo-rick-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: "front-app-pod"
+      app: "demo-rick-app"
+  template:
+    metadata:
+      name: "front-app-pod"
+      labels:
+        name: "front-app-pod"
+        app: "demo-rick-app"
+    spec:
+      containers:
+      - name: "github-presi11-guane-test-frontend-1"
+        image: "gcr.io/kubernetes-334518/github.com/presi11/guane-test-frontend:$COMMIT_SHA"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "front-app-deploy"
+  namespace: "default"
+  labels:
+    app: "front-app-pod"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "front-app-deploy"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
